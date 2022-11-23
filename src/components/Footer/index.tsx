@@ -24,8 +24,8 @@ const Footer: React.FC = () => {
           blankTarget: true,
         },
         {
-          key: 'Ant Design',
-          title: 'Ant Design',
+          key: 'Excel Admin',
+          title: 'Excel Admin',
           href: 'https://ant.design',
           blankTarget: true,
         },

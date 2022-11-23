@@ -17,7 +17,7 @@ const Settings: LayoutSettings & {
   colorWeak: false,
   title: 'Excel Admin',
   pwa: false,
-  logo: 'https://github.zhengjinshou.cn/logo.png',
+  logo: '/logo.png',
   iconfontUrl: '',
 };
 
