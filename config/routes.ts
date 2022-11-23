@@ -6,16 +6,15 @@ export default [
   },
   { path: '/welcome', name: '欢迎', icon: 'smile', component: './Welcome' },
   {
-    path: '/admin',
-    name: '管理页',
+    path: '/excel',
+    name: 'Excel管理',
     icon: 'crown',
     access: 'canAdmin',
     routes: [
-      { path: '/admin', redirect: '/admin/sub-page' },
-      { path: '/admin/sub-page', name: '二级管理页', component: './Admin' },
+      { path: '/excel', redirect: '/excel/test' },
+      { path: '/excel/test', name: '测试插件', component: './Excel/test' },
     ],
   },
-  { name: '查询表格', icon: 'table', path: '/list', component: './TableList' },
   { path: '/', redirect: '/welcome' },
   { path: '*', layout: false, component: './404' },
 ];
