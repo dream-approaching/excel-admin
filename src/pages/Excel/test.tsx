@@ -1,7 +1,7 @@
 import { PageContainer } from '@ant-design/pro-components';
 import '@umijs/max';
 import { Button, message, Upload } from 'antd';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import React from 'react';
 import { UploadOutlined } from '@ant-design/icons';
 import type { UploadProps } from 'antd';
@@ -9,11 +9,9 @@ import { getExcelBuffer } from '@/utils';
 import Excel from 'exceljs';
 
 const Admin: React.FC = () => {
+  const [workbooks, setWorkbooks] = useState(null);
   const props: UploadProps = {
     name: 'file',
-    headers: {
-      authorization: 'authorization-text',
-    },
     async onChange(info) {
       if (info.file.status !== 'uploading') {
         console.log(info.file, info.fileList);
@@ -35,8 +33,17 @@ const Admin: React.FC = () => {
             worksheet,
             sheetId,
           );
+          // worksheet.columns
+          console.log(
+            '%c zjs worksheet.columns:',
+            'color: #fff;background: #b457ff;',
+            worksheet.columns,
+          );
+          worksheet.addRow([322, 'Sam', new Date()]);
+          // worksheet.addRow([{}, {}]);
           // ...
         });
+        setWorkbooks(workbook);
         // console.log('%c zjs workbook2:', 'color: #fff;background: #b457ff;', workbook);
         // console.log('%c zjs workbook:', 'color: #fff;background: #b457ff;', workbook);
         // const workbook = await importExcel(info.file.originFileObj);
@@ -47,17 +54,29 @@ const Admin: React.FC = () => {
     },
   };
 
-  useEffect(() => {
-    // const workbook = new Excel.Workbook();
-    // console.log('%c zjs Excel:', 'color: #fff;background: #b457ff;', Excel);
-    // console.log('%c zjs workbook:', 'color: #fff;background: #b457ff;', workbook);
-  }, []);
+  const writeFile = (fileName, content) => {
+    let a = document.createElement('a');
+    let blob = new Blob([content], { type: 'text/plain' });
+
+    a.download = fileName;
+    a.href = URL.createObjectURL(blob);
+
+    a.click();
+  };
+  const handleDownload = () => {
+    console.log('%c zjs workbooks:', 'color: #fff;background: #b457ff;', workbooks);
+    console.log('%c zjs workbooks.xlsx:', 'color: #fff;background: #b457ff;', workbooks.xlsx);
+    workbooks.xlsx.writeBuffer().then((buffer) => {
+      writeFile(`test.xlsx`, buffer);
+    });
+  };
 
   return (
     <PageContainer content={'test'}>
       <Upload {...props}>
         <Button icon={<UploadOutlined />}>上传</Button>
       </Upload>
+      <Button onClick={handleDownload}>写入</Button>
     </PageContainer>
   );
 };
