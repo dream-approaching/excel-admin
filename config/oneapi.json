@@ -144,26 +144,6 @@
       },
       "x-swagger-router-controller": "api"
     },
-    "/api/notices": {
-      "summary": "getNotices",
-      "description": "NoticeIconItem",
-      "get": {
-        "tags": ["api"],
-        "operationId": "getNotices",
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NoticeIconList"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/rule": {
       "get": {
         "tags": ["rule"],
@@ -524,69 +504,12 @@
           }
         }
       },
-      "NoticeIconList": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/NoticeIconItem"
-            }
-          },
-          "total": {
-            "type": "integer",
-            "description": "列表的内容总数",
-            "format": "int32"
-          },
-          "success": {
-            "type": "boolean"
-          }
-        }
-      },
       "NoticeIconItemType": {
         "title": "NoticeIconItemType",
         "description": "已读未读列表的枚举",
         "type": "string",
         "properties": {},
         "enum": ["notification", "message", "event"]
-      },
-      "NoticeIconItem": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "extra": {
-            "type": "string",
-            "format": "any"
-          },
-          "key": { "type": "string" },
-          "read": {
-            "type": "boolean"
-          },
-          "avatar": {
-            "type": "string"
-          },
-          "title": {
-            "type": "string"
-          },
-          "status": {
-            "type": "string"
-          },
-          "datetime": {
-            "type": "string",
-            "format": "date"
-          },
-          "description": {
-            "type": "string"
-          },
-          "type": {
-            "extensions": {
-              "x-is-enum": true
-            },
-            "$ref": "#/components/schemas/NoticeIconItemType"
-          }
-        }
       }
     }
   }

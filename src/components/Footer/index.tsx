@@ -12,12 +12,6 @@ const Footer: React.FC = () => {
       copyright={`${currentYear} ${defaultMessage}`}
       links={[
         {
-          key: 'Excel Admin',
-          title: 'Excel Admin',
-          href: 'https://github.com/dream-approaching/excel-admin',
-          blankTarget: true,
-        },
-        {
           key: 'github',
           title: <GithubOutlined />,
           href: 'https://github.com/dream-approaching/excel-admin',
