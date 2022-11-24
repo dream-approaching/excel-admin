@@ -27,6 +27,7 @@ const Admin: React.FC = () => {
         // console.log('%c zjs workbook1:', 'color: #fff;background: #b457ff;', workbook);
         await workbook.xlsx.load(arrayBuffer);
         workbook.eachSheet(function (worksheet, sheetId) {
+          worksheet.unprotect();
           console.log(
             '%c zjs worksheet, sheetId:',
             'color: #fff;background: #b457ff;',
@@ -39,7 +40,14 @@ const Admin: React.FC = () => {
             'color: #fff;background: #b457ff;',
             worksheet.columns,
           );
-          worksheet.addRow([322, 'Sam', new Date()]);
+          //   worksheet.addRow([322, 'Sam', new Date()]);
+          worksheet.duplicateRow(7, 1, true);
+          //   worksheet.insertRow(2, [12312, '', '', '', '', '', '', '美元', '', '', '', '', '7']);
+          const rowValues = [];
+          rowValues[11] = '零售客户';
+          // insert new row and return as row object
+          const insertedRow = worksheet.insertRow(14, rowValues);
+          console.log('%c zjs insertedRow:', 'color: #fff;background: #b457ff;', insertedRow);
           // worksheet.addRow([{}, {}]);
           // ...
         });
